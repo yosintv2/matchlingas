@@ -58,15 +58,13 @@ export default function MatchTracker({ match }) {
 
   return (
     <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          {status === 'live' && (
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          )}
-          <span className={`text-xs font-bold uppercase ${status === 'live' ? 'text-red-600' : status === 'scheduled' ? 'text-blue-600' : 'text-gray-500'}`}>
-            {status === 'live' ? 'LIVE' : status === 'scheduled' ? 'Upcoming' : 'Ended'}
-          </span>
-        </div>
+      <div className="flex items-center justify-center mb-2">
+        {status === 'live' && (
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse mr-2" />
+        )}
+        <span className={`text-xs font-bold uppercase text-center ${status === 'live' ? 'text-red-600' : status === 'scheduled' ? 'text-blue-600' : 'text-gray-500'}`}>
+          {status === 'live' ? 'LIVE' : status === 'scheduled' ? 'Upcoming' : 'Ended'}
+        </span>
       </div>
       <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
         <div
