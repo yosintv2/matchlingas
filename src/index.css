@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.match-switch-btn {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  background: transparent;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.match-switch-btn.active {
+  background: #ffffff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+@media (max-width: 639px) {
+  .match-switch-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+
+
+.match-league-bar {
+  margin-top: 4px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.08), rgba(37, 99, 235, 0.12));
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.match-league-bar p {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.8;
+  color: #1d4ed8;
+  letter-spacing: 0.6px;
+}
