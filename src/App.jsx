@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import cfg from '../config';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -41,6 +41,14 @@ export default function App() {
   const { match, otherMatches, streamingData, streamingLoaded, error } = useMatchData(querySlug);
 
   useFixedBottomAd(cfg.ads.fixedBottomSlot);
+
+  useEffect(() => {
+    if (match) {
+      document.title = `${match.team1} vs ${match.team2}, ${match.league}`;
+    } else {
+      document.title = cfg.site.title;
+    }
+  }, [match]);
 
   return (
     <div className="bg-gray-100 font-sans text-gray-900 min-h-screen">
