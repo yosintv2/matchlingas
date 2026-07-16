@@ -8,6 +8,7 @@ import MoreMatches from './components/MoreMatches';
 import MatchInfo from './components/MatchInfo';
 import MatchTracker from './components/MatchTracker';
 import SocialShare from './components/SocialShare';
+import VisitorCounter from './components/VisitorCounter';
 import { useMatchData } from './hooks/useMatchData';
 import { useGoogleAd, useFixedBottomAd } from './hooks/useGoogleAds';
 
@@ -113,6 +114,7 @@ export default function App() {
         )}
       </main>
 
+      <VisitorCounter />
       <Footer />
     </div>
   );
