@@ -2,18 +2,17 @@ import cfg from '../../config';
 const placeholder = (text) =>
   `${cfg.placeholders.teamLogo}${encodeURIComponent(text)}&font=${cfg.placeholders.font}`;
 
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
 function formatDate(start) {
   if (!start) return '';
   const d = new Date(start);
   if (isNaN(d.getTime())) return 'TBD';
-  return d.toLocaleString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).replace(',', ' at');
+  const h = d.getHours(), m = d.getMinutes();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const hh = h % 12 || 12;
+  return `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}, ${String(hh).padStart(2,'0')}:${String(m).padStart(2,'0')} ${ampm}`;
 }
 
 export default function MatchCard({ match }) {
@@ -60,9 +59,17 @@ export default function MatchCard({ match }) {
           )}
         </div>
       </div>
-      <p className="text-sm sm:text-base font-semibold text-blue-600 mt-4" id="match-date-time">
-        Match Time: {formatDate(start)}
-      </p>
+      <div className="flex items-center justify-center gap-2 mt-4" id="match-date-time">
+        <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span className="text-sm font-semibold text-blue-600">Match Time:</span>
+        <span className="px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-sm font-semibold text-blue-700">
+          {formatDate(start)}
+        </span>
+      </div>
     </div>
   );
 }
