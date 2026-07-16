@@ -1,8 +1,16 @@
-export default function StreamingLinks({ data, match }) {
-  if (!data) {
+export default function StreamingLinks({ data, loaded, match }) {
+  if (!loaded) {
     return (
       <p className="text-center text-orange-600 font-semibold">
         Stream links loading soon...
+      </p>
+    );
+  }
+
+  if (!data) {
+    return (
+      <p className="text-center text-orange-600 font-semibold">
+        Match Link Updating Soon
       </p>
     );
   }
@@ -12,8 +20,8 @@ export default function StreamingLinks({ data, match }) {
 
   if (links.length === 0) {
     return (
-      <p className="text-center text-red-600 font-semibold">
-        No match found for this link. Please check the match URL.
+      <p className="text-center text-orange-600 font-semibold">
+        Match Link Updating Soon
       </p>
     );
   }

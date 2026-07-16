@@ -23,7 +23,6 @@ export default function MatchCard({ match }) {
   const t2 = match.team2 || 'N/A';
   const t1Logo = match.team1_logo || placeholder(t1.substring(0, 2).toUpperCase());
   const t2Logo = match.team2_logo || placeholder(t2.substring(0, 2).toUpperCase());
-  const leagueLogo = match.league_logo;
   const league = match.league || '';
   const start = match.start;
 
@@ -56,12 +55,7 @@ export default function MatchCard({ match }) {
           </div>
           {league && (
             <div className="match-league-bar mt-4">
-              <p>
-                {leagueLogo && (
-                  <img src={leagueLogo} alt={league} className="w-4 h-4 rounded-full object-contain bg-white border inline-block mr-1" />
-                )}
-                {league}
-              </p>
+              <p>{league}</p>
             </div>
           )}
         </div>

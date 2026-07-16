@@ -14,6 +14,7 @@ export function useMatchData(querySlug) {
   const [match, setMatch] = useState(undefined);
   const [otherMatches, setOtherMatches] = useState([]);
   const [streamingData, setStreamingData] = useState(null);
+  const [streamingLoaded, setStreamingLoaded] = useState(false);
   const [error, setError] = useState(null);
   const streamingUrlRef = useRef(null);
 
@@ -37,8 +38,10 @@ export function useMatchData(querySlug) {
 
         if (found?.streaming_url) {
           fetchStreamingLinks(found.streaming_url).then(stream => {
-            if (!cancelled) setStreamingData(stream);
+            if (!cancelled) { setStreamingData(stream); setStreamingLoaded(true); }
           });
+        } else {
+          setStreamingLoaded(true);
         }
       } catch (err) {
         if (!cancelled) setError(err.message);
@@ -56,7 +59,7 @@ export function useMatchData(querySlug) {
     const interval = setInterval(() => {
       if (streamingUrlRef.current) {
         fetchStreamingLinks(streamingUrlRef.current).then(stream => {
-          setStreamingData(stream);
+          setStreamingData(stream); setStreamingLoaded(true);
         });
       }
     }, 30000);
@@ -72,5 +75,5 @@ export function useMatchData(querySlug) {
     }
   }, []);
 
-  return { match, otherMatches, streamingData, error, refreshStreaming };
+  return { match, otherMatches, streamingData, streamingLoaded, error, refreshStreaming };
 }

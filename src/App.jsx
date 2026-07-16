@@ -38,7 +38,7 @@ function Spinner() {
 
 export default function App() {
   const querySlug = useMemo(() => getQueryParam(cfg.queryParam), []);
-  const { match, otherMatches, streamingData, error } = useMatchData(querySlug);
+  const { match, otherMatches, streamingData, streamingLoaded, error } = useMatchData(querySlug);
 
   useFixedBottomAd(cfg.ads.fixedBottomSlot);
 
@@ -97,7 +97,7 @@ export default function App() {
                 </a>
                 <MatchTracker match={match} />
                 <div id="live-container" className="space-y-4 my-8">
-                  <StreamingLinks data={streamingData} match={match} />
+                  <StreamingLinks data={streamingData} loaded={streamingLoaded} match={match} />
                 </div>
               </div>
             </section>
