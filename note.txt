@@ -1,0 +1,50 @@
+=== OBFUSCATION CONFIG ===
+Used: javascript-obfuscator (post-build step in vite.config.js)
+
+Settings:
+  compact: true
+  controlFlowFlattening: true
+  controlFlowFlatteningThreshold: 1
+  deadCodeInjection: true
+  deadCodeInjectionThreshold: 1
+  debugProtection: true
+  debugProtectionInterval: 4000
+  disableConsoleOutput: true
+  identifierNamesGenerator: mangled-shuffled
+  numbersToExpressions: true
+  selfDefending: true
+  splitStrings: true
+  splitStringsChunkLength: 3
+  stringArray: true
+  stringArrayEncoding: ['rc4']
+  stringArrayThreshold: 1
+  transformObjectKeys: true
+  unicodeEscapeSequence: true
+  shuffleStringArray: true
+  splitStringChunkOverlap: 2
+  target: browser
+
+Build:
+  npm run build          -> production (obfuscated)
+  npm run dev            -> development (clean)
+
+Output: dist/assets/*.js
+
+=== API ENDPOINTS (config.js) ===
+  football: https://cdn.singhs.com.np/api/match-football.json
+  cricket:  https://cdn.singhs.com.np/api/match-cricket.json
+  more:     https://cdn.singhs.com.np/api/more.json
+
+=== ADS (config.js) ===
+  clientId:        ca-pub-5525538810839147
+  topBannerSlot:   4345862479
+  middleBannerSlot: 4345862479
+  fixedBottomSlot: 5912194004
+
+=== QUERY PARAM (config.js) ===
+  yosintv (e.g. ?yosintv=spain)
+
+=== CLOUDFLARE PAGES ===
+  Build command: npm run build
+  Output dir:    dist
+  Node version:  18+
