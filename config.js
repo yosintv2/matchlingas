@@ -1,6 +1,6 @@
 export default {
   site: {
-    title: 'YoSinTV: Cricket | Football Stream Free',
+    title: 'YoSinTV: Match L!ve Streams',
     description: 'Watch live sports matches and highlights on YoSinTV.',
     keywords: 'YoSinTV, live stream, football, cricket, sports highlights',
     ogTitle: 'YoSinTV - Live Sports Streaming',
