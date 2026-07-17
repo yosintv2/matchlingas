@@ -39,7 +39,7 @@ export default function StreamingLinks({ data, loaded, match }) {
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex justify-center items-center text-decoration-none no-underline text-inherit my-1 p-3 border-2 border-solid border-black rounded-md cursor-pointer transition-shadow duration-300 bg-[#2e7d32] text-white font-bold hover:shadow-lg"
+          className="flex items-center justify-center text-decoration-none no-underline text-inherit my-1 p-3 border-2 border-solid border-black rounded-md cursor-pointer transition-shadow duration-300 bg-[#2e7d32] text-white font-bold hover:shadow-lg"
         >
           <span className="flex-2 text-center text-white font-bold">{item.name}</span>
         </a>
