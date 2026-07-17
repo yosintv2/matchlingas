@@ -9,6 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    { name: 'remove-crossorigin', transformIndexHtml: h => h.replace(/\bcrossorigin\b/g, '') },
     ...(process.env.NODE_ENV === 'production'
       ? [{
           name: 'post-obfuscate',
