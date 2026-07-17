@@ -16,9 +16,14 @@ export default function StreamingLinks({ data, loaded, match }) {
   }
 
   const events = Array.isArray(data.events) ? data.events : [];
-  const links = events.filter(e => e && e.name && e.link);
+  const items = events.flatMap(e => {
+    if (!e || !e.name) return [];
+    if (e.link) return [{ name: e.name, link: e.link }];
+    if (Array.isArray(e.links)) return e.links.map(link => ({ name: e.name, link }));
+    return [];
+  });
 
-  if (links.length === 0) {
+  if (items.length === 0) {
     return (
       <p className="text-center text-orange-600 font-semibold">
         Match Link Updating Soon
@@ -28,7 +33,7 @@ export default function StreamingLinks({ data, loaded, match }) {
 
   return (
     <div className="space-y-3">
-      {links.map((item, i) => (
+      {items.map((item, i) => (
         <a
           key={i}
           href={item.link}
