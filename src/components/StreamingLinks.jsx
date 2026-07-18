@@ -16,12 +16,21 @@ export default function StreamingLinks({ data, loaded, match }) {
   }
 
   const events = Array.isArray(data.events) ? data.events : [];
-  const items = events.flatMap(e => {
-    if (!e || !e.name) return [];
-    if (e.link) return [{ name: e.name, link: e.link }];
-    if (Array.isArray(e.links)) return e.links.map(link => ({ name: e.name, link }));
-    return [];
-  });
+
+  const items = [];
+  let linkCounter = 0;
+  for (const e of events) {
+    if (!e || !e.name) continue;
+    if (e.link) {
+      items.push({ name: e.name, link: e.link });
+    } else if (Array.isArray(e.links)) {
+      for (const link of e.links) {
+        if (!link) continue;
+        linkCounter++;
+        items.push({ name: `Link ${linkCounter}`, link });
+      }
+    }
+  }
 
   if (items.length === 0) {
     return (
