@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export default function StreamingLinks({ data, loaded, match }) {
   if (!loaded) {
     return (
@@ -18,7 +16,6 @@ export default function StreamingLinks({ data, loaded, match }) {
   }
 
   const events = Array.isArray(data.events) ? data.events : [];
-  const apiStyles = data.styles || {};
 
   const items = [];
   for (const e of events) {
@@ -46,48 +43,16 @@ export default function StreamingLinks({ data, loaded, match }) {
   return (
     <div className="space-y-3">
       {items.map((item, i) => (
-        <LinkButton key={i} item={item} apiStyles={apiStyles} />
+        <a
+          key={i}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center text-decoration-none no-underline text-inherit my-1 p-3 border-2 border-solid border-black rounded-md cursor-pointer transition-shadow duration-300 bg-[#2e7d32] text-white font-bold hover:shadow-lg"
+        >
+          <span className="flex-2 text-center text-white font-bold">{item.name}</span>
+        </a>
       ))}
     </div>
   );
-}
-
-function LinkButton({ item, apiStyles }) {
-  const [hovered, setHovered] = useState(false);
-  const linkStyle = hovered && apiStyles.liveeHover
-    ? `${apiStyles.livee}; ${apiStyles.liveeHover}`
-    : apiStyles.livee || '';
-
-  return (
-    <a
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ ...parseInlineStyle(linkStyle) }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <span style={{ ...parseInlineStyle(apiStyles.liveeName || '') }}>
-        {item.name}
-      </span>
-    </a>
-  );
-}
-
-function parseInlineStyle(cssString) {
-  if (!cssString) return {};
-  const style = {};
-  cssString.split(';').forEach(rule => {
-    const trimmed = rule.trim();
-    if (!trimmed) return;
-    const colonIdx = trimmed.indexOf(':');
-    if (colonIdx === -1) return;
-    const key = trimmed.slice(0, colonIdx).trim();
-    const value = trimmed.slice(colonIdx + 1).trim();
-    if (key && value) {
-      const camelKey = key.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-      style[camelKey] = value;
-    }
-  });
-  return style;
 }
