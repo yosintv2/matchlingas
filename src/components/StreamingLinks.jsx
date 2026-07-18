@@ -18,16 +18,16 @@ export default function StreamingLinks({ data, loaded, match }) {
   const events = Array.isArray(data.events) ? data.events : [];
 
   const items = [];
-  let linkCounter = 0;
   for (const e of events) {
     if (!e || !e.name) continue;
     if (e.link) {
       items.push({ name: e.name, link: e.link });
     } else if (Array.isArray(e.links)) {
+      let idx = 0;
       for (const link of e.links) {
         if (!link) continue;
-        linkCounter++;
-        items.push({ name: `Link ${linkCounter}`, link });
+        idx++;
+        items.push({ name: `${e.name} - Link ${idx}`, link });
       }
     }
   }
