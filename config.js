@@ -10,7 +10,7 @@ export default {
     logo: '/logo.png',
     favicon: '/favicon.png',
     homepageUrl: 'https://www.yosin-tv.net/',
-    downloadApkUrl: 'https://www.yosintv.net/apk',
+    downloadApkUrl: 'https://shorturl.at/qDSOS',
   },
 
   api: {
